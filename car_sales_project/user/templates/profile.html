@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<h1>Username: {{user.username}}</h1>
+<a href="{% url "changeprofile" %}" class="btn btn-warning">Edit Your Profile</a>
+<div class="d-flex flex-wrap m-4">
+
+    {% for car in history %}
+    <div class="card m-3" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{car.name}}</h5>
+          <p class="card-title">Quantity: {{car.quantity}}</p>
+          <p class="card-title">User Name: {{car.user.username}}</p>
+          <a href="{% url "deatils" car.id %}" class="btn btn-primary">More Details</a>
+        </div>
+      </div>
+    {% endfor %}
+
+</div>
+
+
+{% endblock %}

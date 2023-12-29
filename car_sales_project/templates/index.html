@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="d-flex justify-content-center align-items-center">
+    <div class="m-4"><img src="{% static "car_2.avif" %} " alt=""></div>
+    <div class="m-4  ">
+        <h3><strong>Welcome To CarHub BD.......!</strong></h3>
+        <h5><strong>Buy Your Dream Now......!</strong></h5>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequuntur non reiciendis eveniet minus suscipit delectus, in quis quos debitis distinctio placeat omnis voluptate, perspiciatis iste porro obcaecati cumque mollitia asperiores aut, possimus harum velit. Ad, temporibus? Officia iure, ipsa expedita natus sequi voluptates corrupti voluptatum quae iusto rem quia. At, unde vero! Nemo unde voluptatum quisquam, suscipit ratione ad perspiciatis cumque? Perferendis sunt voluptatum, ipsa, voluptatem, quod quam impedit laboriosam atque provident molestias mollitia laborum facere pariatur ipsam repudiandae vel.</p>
+    </div>
+</div>
+
+<div class="mt-5 mb-5 d-flex flex-wrap justify-content-center align-items-center">
+    <h5>Filter Your Favorite Brand:</h5>
+
+    {% for brand in brands %}
+    <a class="btn p-3 ms-5 me-5 bg-secondary text-light" style="border-radius: 10px;" href="{% url "brand_wise_slug" brand.slug %}"><strong>{{brand.name}}
+    </strong></a>
+    
+    {% endfor %}
+
+</div>
+
+<div class="d-flex flex-wrap m-4">
+
+    {% for car in cars %}
+    <div class="card m-3" style="width: 18rem;">
+        <img src="{{car.image.url}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{car.name}}</h5>
+          <p class="card-title">Price: {{car.price}}$</p>
+          <p class="card-title">Brand: {{car.brand.name}}</p>
+          <p class="card-text">{{car.descriptions | truncatewords:7}}</p>
+          <a href="{% url "deatils" car.id %}" class="btn btn-primary">More Details</a>
+        </div>
+      </div>
+    {% endfor %}
+
+</div>
+
+{% endblock %}
